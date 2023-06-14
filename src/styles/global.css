@@ -1,0 +1,22 @@
+:root {
+  --primary-color: #73a9ad;
+  --secondary-color: #b3c890;
+  --background-light-color: #f5f0bb;
+  --background-dark-color: #dbdfaa;
+}
+
+p {
+  font-family: "Noto Sans", sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
