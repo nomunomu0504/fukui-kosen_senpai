@@ -1,5 +1,4 @@
-import { memo, useEffect, useState } from "react"
-
+import { memo, useCallback, useEffect, useState } from "react"
 
 import { onSnapshot, orderBy, query } from "firebase/firestore"
 import { css } from "linaria"
@@ -26,9 +25,17 @@ export const Home: React.FC<Props> = memo((): JSX.Element => {
     })
   }, [chatsCollectionRef])
 
-  const timestampToDate = (date: Date) => {
+  const timestampToDate = useCallback((date: Date) => {
     return `${date.getHours()}`.padStart(2, "0") + ":" + `${date.getMinutes()}`.padStart(2, "0")
-  }
+  }, [])
+
+  const createMessageParagraph = useCallback((message: string) => {
+    return message.split("\n").map((line, index) => (
+      <p key={index} className={classes["text"]}>
+        {line}
+      </p>
+    ))
+  }, [])
 
   return (
     <>
@@ -39,7 +46,7 @@ export const Home: React.FC<Props> = memo((): JSX.Element => {
         <div className={classes["chat-container"]}>
           {chats.map((chat) => (
             <div key={chat.uid} className={classes["chat-item"]}>
-              <p className={classes["text"]}>{chat.message}</p>
+              {createMessageParagraph(chat.message)}
               <div className={classes["info"]}>
                 <p className={classes["uid"]}>{chat.uid}</p>
                 <p className={classes["time"]}>{timestampToDate(chat.createdAt)}</p>
