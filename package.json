@@ -12,7 +12,7 @@
     "dotenv": "^16.1.4",
     "firebase": "^9.22.2",
     "linaria": "^4.1.17",
-    "next": "13.4.5",
+    "next": "13.5.4",
     "next-linaria": "^0.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
